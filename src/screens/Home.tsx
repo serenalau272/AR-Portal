@@ -22,11 +22,11 @@ function Home() {
   }, []);
 
   function checkXR() {
-    // if (!window.isSecureContext) {
-    //   document.getElementById("warning")!.innerText =
-    //     "WebXR unavailable. Please use secure context";
-    //   document.getElementById("warning")!.style.color = "#ff0033";
-    // }
+    if (!window.isSecureContext) {
+      document.getElementById("warning")!.innerText =
+        "WebXR unavailable. Please use secure context";
+      document.getElementById("warning")!.style.color = "#ff0033";
+    }
     if (navigator.xr) {
       // check to see if WebXR is supported
       navigator.xr.addEventListener("devicechange", checkSupportedState);
@@ -46,7 +46,7 @@ function Home() {
           "xr-button"
         )! as HTMLButtonElement;
 
-        if (true || supported) {
+        if (supported) {
           xrButton.innerHTML = "Enter AR";
           xrButton.addEventListener("click", start);
           document.getElementById("warning")!.innerText = "WebXR available";
@@ -72,8 +72,10 @@ function Home() {
   };
 
   async function start() {
-    // const entryContainer = document.getElementsByClassName("entry")[0] as HTMLElement;
-    // entryContainer!.style.display = "none";
+    const entryContainer = document.getElementsByClassName(
+      "entry"
+    )[0] as HTMLElement;
+    entryContainer!.style.display = "none";
 
     const canvas = document.getElementById("scene") as HTMLCanvasElement;
     const gl = canvas!.getContext("webgl", { xrCompatible: true });
