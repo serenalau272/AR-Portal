@@ -1,0 +1,37 @@
+.entry {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    top: 0;
+    background-color: #242424;
+}
+
+#title {
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+#overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    bottom: 0;
+
+    > .footer {
+        padding-bottom: 2vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        gap: 10px;
+    }
+}
