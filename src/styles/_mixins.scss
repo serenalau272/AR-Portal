@@ -1,22 +1,96 @@
-/**Breakpoints
-'em' is most consistent unit for breakpoints.
-we utilise Sass maps here
-**/
-
-//640px, 1024px, 1400px
-$breakpoints-up: ("medium": "40em", "large": "64em", "xlarge": "87.5em");
-
-//639px, 1023px, 1399px to prevent overlapping styles
-$breakpoints-down: ("small": "39.9375em", "medium": "63.9375em", "large": "87.4375em");
-
-@mixin breakpoint-up($size){
-    @media (min-width: map-get($breakpoints-up, $size)){
-        @content;
-    }
+@mixin flex-align($direction, $align) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
 }
 
-@mixin breakpoint-down($size){
-    @media (max-width: map-get($breakpoints-down, $size)){
-        @content;
-    }
+@mixin position-sticky($background, $index) {
+  position: sticky;
+  z-index: $index;
+  background-color: $background;
+  @content;
+}
+
+@mixin scroll-x($color) {
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    height: 22px;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: 30px;
+    border: 7px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+  }
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+}
+
+@mixin scroll-y($color) {
+  overflow-y: auto;
+  // margin-right: -8px;
+  &::-webkit-scrollbar {
+    width: 22px;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: 30px;
+    border: 7px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+  }
+}
+
+$font-weights: (
+  "Thin": 100,
+  "Light": 300,
+  "Regular": 400,
+  "Medium": 500,
+  "SemiBold": 600,
+  "Bold": 700,
+  "ExtraBold": 800,
+  "Black": 900,
+);
+
+@mixin font-weight($weight) {
+  font-weight: map-get($font-weights, $weight);
+}
+
+@mixin no-selection {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+}
+
+$breakpoints-up: (
+  "medium": "40em",
+  "large": "64em",
+  "xlarge": "87.5em",
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+$breakpoints-down: (
+  "small": "39.9375em",
+  "medium": "63.9375em",
+  "large": "87.4375em",
+);
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
 }
