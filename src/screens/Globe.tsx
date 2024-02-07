@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import * as THREE from "three";
-import verandaUrl from "../assets/veranda_new.gltf";
+import earth from "../assets/earth.gltf";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import "../styles/screens/globe.scss";
 
@@ -107,7 +107,6 @@ const Globe = () => {
     scene.add(spotlight);
 
     const session = await window.navigator.xr!.requestSession("immersive-ar", {
-      optionalFeatures: ["dom-overlay"],
       requiredFeatures: ["hit-test"],
       domOverlay: { root: document.getElementById("overlay") as Element },
     });
@@ -116,7 +115,7 @@ const Globe = () => {
       baseLayer: new XRWebGLLayer(session, gl!),
     });
 
-    loader.load(verandaUrl, function (gltf) {
+    loader.load(earth, function (gltf) {
       reticle = gltf.scene;
       veranda = gltf.scene;
 

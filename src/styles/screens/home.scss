@@ -1,22 +1,36 @@
 @import "../variables";
 @import "../mixins";
 
+$page-margin: 14px;
+
 .home {
   width: 100vw;
   height: 100vh;
   @include flex-align(column, unset);
   overflow: hidden;
+  background-color: $background-grey;
 
-  .globe-container,
-  .portal-container {
-    width: 100%;
+  .component-container {
+    width: calc(100% - 2 * $page-margin);
+    height: calc(100% - 1.5 * $page-margin);
     overflow: hidden;
+    margin: $page-margin;
+    background-color: white;
+    border-radius: 10px;
+
+    &.top {
+      margin-bottom: calc(0.5 * $page-margin);
+    }
+
+    &.bottom {
+      margin-top: calc(0.5 * $page-margin);
+    }
   }
 
-  .resizable-divider {
-    width: 100%;
-    height: 5px;
-    background-color: $light-grey;
-    cursor: ns-resize;
+  .sash.sash-horizontal::before {
+    content: url("./src/assets/ic_round-drag-handle.svg");
+    @include flex-align(column, center);
+    justify-content: center;
+    top: calc(50% - (var(--sash-hover-size) / 2) - 2px);
   }
 }

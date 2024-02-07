@@ -17,6 +17,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   overflow: hidden;
+
+  --focus-border: transparent;
+  --separator-border: transparent;
 }
 
 body {
